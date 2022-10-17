@@ -1,0 +1,115 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag and drop in js</title>
+    <style>
+        *{
+            background-color: beige;
+        }
+        .imgbox{
+            background-image: url("img/face.png");
+            position: relative;
+            top: 33px;
+            left: 48px;
+        height: 150px;
+        width: 130px;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        }
+        .box{
+               height: 200px;
+               width: 200px;
+               border: 2px solid red;
+               display: inline-block;
+
+        }
+        .hold{
+            border: 2px solid red;
+        }
+        .hide{
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="imgbox" draggable="true"></div>
+    </div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+<script>
+    let box = document.getElementsByClassName("box");
+    let imgbox = document.querySelector(".imgbox")
+// adding event listener
+
+imgbox.addEventListener("dragstart", function(e){
+    e.target.className +=" hold"
+    setTimeout(function(){
+
+        e.target.className =" hide"
+    },0)
+
+console.log("drag event started")
+
+})
+ imgbox.addEventListener("dragend",function(e){
+    e.target.className='imgbox'
+     console.log("drag event end")
+ })
+
+for(i of box){
+    i.addEventListener("dragover",function(e){
+        e.preventDefault();
+        console.log("dragover has been trigger")
+    })
+    i.addEventListener("dragenter",function(){
+        console.log("dragenter has been trigger")
+    })
+    i.addEventListener("dragleave",function(){
+        console.log("dragleave has been trigger")
+        
+    })
+    i.addEventListener("drop",function(e){
+        console.log("drop has been trigger")
+        e.target.append(imgbox)
+    })
+}
+// function foo(){
+//     let a=b=0;
+//     a++;
+//     return a;
+// }
+// console.log(foo())
+// console.log(typeof(b))
+// console.log(typeof(a))
+// const arr =["hello","hii,","goodmorning","goodnight"]
+// arr.length=1;
+// console.log(arr[2])
+
+// let length = 4;
+// let num = []
+// for(var i=1;i<5;i++){
+//     setTimeout(function(){
+//         console.log(i)
+//     },0)
+// }
+
+// let j;
+// for (j = 0; j < 3; j++) {
+//   const log = () => {
+//     console.log(j);
+//   }
+//   setTimeout(log, 100);
+// }
+
+// {
+//    const log=12;
+//     console.log(log)
+// }
+
+</script>
+</body>
+</html>
